@@ -27,12 +27,41 @@ mkdir -p "${TARGET_RO_DIR}/data"
 mkdir -p "${DATA_ETC}/docker"
 mkdir -p "${DATA_ROOT}"
 
+rm -rf "${TARGET_RO_DIR}/etc/supervisor.d"
+mkdir -p "${DATA_ETC}/supervisor.d"
+
+echo "%sudo ALL=(ALL) ALL" >> "${TARGET_RO_DIR}/etc/sudoers"
+
+pushd "${TARGET_RO_DIR}/usr"
+mkdir -p "${TMP_DATA}/local"
+ln -sf ../data/local local
+echo 'export PATH=${PATH}:/usr/local/bin' >> ${TARGET_RO_DIR}/etc/profile.d/path.sh
+popd
+
+pushd "${TARGET_RO_DIR}/etc"
+#groupadd -f -r -R ${TARGET_RO_DIR} supervisor || true
+#groupadd -f -r -R ${TARGET_RO_DIR} www-data || true
+#groupadd -f -r -R ${TARGET_RO_DIR} i2c || true
+#useradd -R ${TARGET_RO_DIR} -s /bin/true -G www-data supervisor
+#useradd -R ${TARGET_RO_DIR} -s /bin/true -G www-data audio
+#useradd -R ${TARGET_RO_DIR} -s /bin/true -G www-data i2c
+#usermod -R ${TARGET_RO_DIR} -a -G audio www-data
+#usermod -R ${TARGET_RO_DIR} -a -G i2c www-data
+#usermod -R ${TARGET_RO_DIR} -a -G supervisor www-data
+popd
+
+mkdir -p "${TMP_DATA}/src"
+chmod a+rwx "${TMP_DATA}/src"
+
 pushd "${TARGET_RO_DIR}/etc"
 mv ssh "${DATA_ETC}/ssh"
 mv dnsmasq.conf "${DATA_ETC}/"
 ln -sf ../data/etc/ssh ssh
 ln -sf ../data/etc/dnsmasq.conf dnsmasq.conf
 ln -sf ../data/etc/docker docker
+ln -sf ../data/etc/supervisor.d supervisor.d
+mv lighttpd "${DATA_ETC}/lighttpd"
+ln -sf ../data/etc/lighttpd lighttpd
 popd
 
 pushd "${TARGET_RO_DIR}/"
