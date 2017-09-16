@@ -45,9 +45,11 @@ pushd "${TARGET_RO_DIR}/etc"
 #useradd -R ${TARGET_RO_DIR} -s /bin/true -G www-data supervisor
 #useradd -R ${TARGET_RO_DIR} -s /bin/true -G www-data audio
 #useradd -R ${TARGET_RO_DIR} -s /bin/true -G www-data i2c
-#usermod -R ${TARGET_RO_DIR} -a -G audio www-data
 #usermod -R ${TARGET_RO_DIR} -a -G i2c www-data
 #usermod -R ${TARGET_RO_DIR} -a -G supervisor www-data
+sed -i 's/dialout:x:18:$/dialout:x:18:chip/g' group
+sed -i 's/audio:x:29:$/audio:x:29:chip/g' group
+sed -i 's/netdev:x:82:$/netdev:x:82:chip/g' group
 popd
 
 mkdir -p "${TMP_DATA}/src"
