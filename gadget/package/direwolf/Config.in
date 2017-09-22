@@ -1,0 +1,7 @@
+config BR2_PACKAGE_DIREWOLF
+	bool "direwolf"
+	select BR2_PACKAGE_LIBASOUND
+  select BR2_PTHREADS
+	default n
+	help
+    Adds the Dire Wolf APRS AX.25 packet modem
