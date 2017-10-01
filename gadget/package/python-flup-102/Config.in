@@ -1,0 +1,5 @@
+config BR2_PACKAGE_PYTHON_FLUP_102
+	bool "python-flup-1.0.2"
+	default n
+	help
+    python flup version 1.0.2

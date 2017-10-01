@@ -1,0 +1,5 @@
+config BR2_PACKAGE_PYTHON_GPS3
+	bool "python-gps3"
+	default n
+	help
+    python gps3
