@@ -102,6 +102,21 @@ popd
 
 popd
 
+pushd "${TARGET_RO_DIR}/etc/init.d"
+mkdir -p "${DATA_ETC}/init.d"
+echo "#!/bin/sh" > "${DATA_ETC}/init.d/S51direwolf"
+echo "killall gpsd" >> "${DATA_ETC}/init.d/S51direwolf"
+echo "stty 9600 < /dev/ttyS1" >> "${DATA_ETC}/init.d/S51direwolf"
+echo "/usr/sbin/gpsd -n /dev/ttyS1 &" >> "${DATA_ETC}/init.d/S51direwolf"
+echo "/data/src/ChipTNC-config/config-tnc.sh" >> "${DATA_ETC}/init.d/S51direwolf"
+echo "/bin/mkdir /tmp/supervisor" >> "${DATA_ETC}/init.d/S51direwolf"
+echo "/bin/chmod a+wrx /tmp/supervisor" >> "${DATA_ETC}/init.d/S51direwolf"
+echo "/usr/bin/direwolf -t 0 -a 15 -c /data/etc/direwolf.conf > /tmp/supervisor/direwolf-stdout.log 2>&1 &" >> "${DATA_ETC}/init.d/S51direwolf"
+
+chmod +x "${DATA_ETC}/init.d/S51direwolf"
+ln -sf ../../data/etc/init.d/S51direwolf S51direwolf
+popd
+
 # Create tar ball for ro rootfs
 echo "# generating '${BINARIES_DIR}/rootfs_ro.tar'..."
 tar -C "${TARGET_RO_DIR}" -c -f "${BINARIES_DIR}/rootfs_ro.tar" .
