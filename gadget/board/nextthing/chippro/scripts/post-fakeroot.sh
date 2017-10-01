@@ -58,7 +58,9 @@ chmod a+rwx "${TMP_DATA}/src"
 pushd "${TARGET_RO_DIR}/etc"
 mv ssh "${DATA_ETC}/ssh"
 mv dnsmasq.conf "${DATA_ETC}/"
+mv direwolf.conf "${DATA_ETC}/"
 ln -sf ../data/etc/ssh ssh
+ln -sf ../data/etc/direwolf.conf direwolf.conf
 ln -sf ../data/etc/dnsmasq.conf dnsmasq.conf
 ln -sf ../data/etc/docker docker
 ln -sf ../data/etc/supervisor.d supervisor.d
