@@ -1,0 +1,5 @@
+config BR2_PACKAGE_PYTHON_HTTPRETTY
+	bool "python-httpretty"
+	default n
+	help
+    python httpretty

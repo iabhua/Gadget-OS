@@ -1,0 +1,9 @@
+config BR2_PACKAGE_PYTHON_APRS
+	bool "python-aprs"
+    select BR2_PACKAGE_PYTHON_NOSE
+    select BR2_PACKAGE_PYTHON_COVERAGE
+    select BR2_PACKAGE_PYTHON_HTTPRETTY
+    select BR2_PACKAGE_PYTHON_DUMMYSERIAL
+	default n
+	help
+    python aprs

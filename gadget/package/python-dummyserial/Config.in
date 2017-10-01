@@ -1,0 +1,5 @@
+config BR2_PACKAGE_PYTHON_DUMMYSERIAL
+	bool "python-dummyserial"
+	default n
+	help
+    python dummyserial

@@ -1,0 +1,5 @@
+config BR2_PACKAGE_PYTHON_NOSE
+	bool "python-nose"
+	default n
+	help
+    python nose

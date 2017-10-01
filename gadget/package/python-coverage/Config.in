@@ -1,0 +1,5 @@
+config BR2_PACKAGE_PYTHON_COVERAGE
+	bool "python-coverage"
+	default n
+	help
+    python coverage
