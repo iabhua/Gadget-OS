@@ -111,6 +111,7 @@ echo "/usr/sbin/gpsd -n /dev/ttyS1 &" >> "${DATA_ETC}/init.d/S51direwolf"
 echo "/data/src/ChipTNC-config/config-tnc.sh" >> "${DATA_ETC}/init.d/S51direwolf"
 echo "/bin/mkdir /tmp/supervisor" >> "${DATA_ETC}/init.d/S51direwolf"
 echo "/bin/chmod a+wrx /tmp/supervisor" >> "${DATA_ETC}/init.d/S51direwolf"
+echo "/bin/chmod a+wr /dev/i2c*" >> "${DATA_ETC}/init.d/S51direwolf"
 echo "/usr/bin/direwolf -t 0 -a 15 -c /data/etc/direwolf.conf > /tmp/supervisor/direwolf-stdout.log 2>&1 &" >> "${DATA_ETC}/init.d/S51direwolf"
 
 chmod +x "${DATA_ETC}/init.d/S51direwolf"
