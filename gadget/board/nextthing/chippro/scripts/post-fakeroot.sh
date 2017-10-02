@@ -50,6 +50,7 @@ pushd "${TARGET_RO_DIR}/etc"
 sed -i 's/dialout:x:18:$/dialout:x:18:chip/g' group
 sed -i 's/audio:x:29:$/audio:x:29:chip/g' group
 sed -i 's/netdev:x:82:$/netdev:x:82:chip/g' group
+echo "supervisor:x:998:chip" >> group
 popd
 
 mkdir -p "${TMP_DATA}/src"
@@ -59,11 +60,13 @@ pushd "${TARGET_RO_DIR}/etc"
 mv ssh "${DATA_ETC}/ssh"
 mv dnsmasq.conf "${DATA_ETC}/"
 mv direwolf.conf "${DATA_ETC}/"
+mv supervisord.conf "${DATA_ETC}/"
 ln -sf ../data/etc/ssh ssh
 ln -sf ../data/etc/direwolf.conf direwolf.conf
 ln -sf ../data/etc/dnsmasq.conf dnsmasq.conf
 ln -sf ../data/etc/docker docker
 ln -sf ../data/etc/supervisor.d supervisor.d
+ln -sf ../data/etc/supervisord.conf supervisord.conf
 mv lighttpd "${DATA_ETC}/lighttpd"
 ln -sf ../data/etc/lighttpd lighttpd
 popd
