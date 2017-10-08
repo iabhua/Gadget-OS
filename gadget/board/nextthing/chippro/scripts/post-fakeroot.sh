@@ -57,13 +57,15 @@ mkdir -p "${TMP_DATA}/src"
 chmod a+rwx "${TMP_DATA}/src"
 
 pushd "${TARGET_RO_DIR}/etc"
+mv cron.d "${DATA_ETC}/cron.d"
+ln -sf ../data/etc/cron.d cron.d
 mv ssh "${DATA_ETC}/ssh"
-mv dnsmasq.conf "${DATA_ETC}/"
-mv direwolf.conf "${DATA_ETC}/"
-mv supervisord.conf "${DATA_ETC}/"
 ln -sf ../data/etc/ssh ssh
-ln -sf ../data/etc/direwolf.conf direwolf.conf
+mv dnsmasq.conf "${DATA_ETC}/"
 ln -sf ../data/etc/dnsmasq.conf dnsmasq.conf
+mv direwolf.conf "${DATA_ETC}/"
+ln -sf ../data/etc/direwolf.conf direwolf.conf
+mv supervisord.conf "${DATA_ETC}/"
 ln -sf ../data/etc/docker docker
 ln -sf ../data/etc/supervisor.d supervisor.d
 ln -sf ../data/etc/supervisord.conf supervisord.conf
